@@ -112,9 +112,14 @@ a { color: inherit; }
     border-bottom: 1px solid var(--border);
     padding: 1rem var(--pad);
     transform: translateY(-110%);
-    transition: transform .3s var(--ease);
+    visibility: hidden;
+    transition: transform .3s var(--ease), visibility 0s .3s;
   }
-  .nav__menu.is-open { transform: translateY(0); }
+  .nav__menu.is-open {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform .3s var(--ease), visibility 0s 0s;
+  }
   .nav__menu li { padding: .75rem 0; border-bottom: 1px solid var(--border); }
   .nav__menu li:last-child { border-bottom: 0; }
 }
