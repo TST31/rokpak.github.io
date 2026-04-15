@@ -57,4 +57,67 @@
       }).join('');
     }
   }
+  // Audio preview player
+  let currentAudio = null;
+  let currentItem = null;
+  let currentTimer = null;
+  let progressRaf = null;
+  const PREVIEW_DURATION = 30;
+
+  function stopAudio() {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+    if (currentItem) {
+      currentItem.classList.remove('is-playing');
+      currentItem.querySelector('.song__play').classList.remove('is-playing');
+      const prog = currentItem.querySelector('.song__progress');
+      if (prog) prog.style.width = '0%';
+      currentItem = null;
+    }
+    clearTimeout(currentTimer);
+    cancelAnimationFrame(progressRaf);
+    currentTimer = null;
+  }
+
+  function animateProgress(audio, progEl, startTime) {
+    const elapsed = audio.currentTime - startTime;
+    const pct = Math.min(elapsed / PREVIEW_DURATION * 100, 100);
+    progEl.style.width = pct + '%';
+    if (elapsed < PREVIEW_DURATION && !audio.paused) {
+      progressRaf = requestAnimationFrame(() => animateProgress(audio, progEl, startTime));
+    }
+  }
+
+  document.querySelectorAll('.song__play').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.song-item');
+      const src = btn.dataset.audio;
+
+      if (currentItem === item) {
+        stopAudio();
+        return;
+      }
+
+      stopAudio();
+
+      const audio = new Audio(src);
+      currentAudio = audio;
+      currentItem = item;
+
+      const progEl = item.querySelector('.song__progress');
+
+      audio.play().then(() => {
+        item.classList.add('is-playing');
+        btn.classList.add('is-playing');
+        animateProgress(audio, progEl, audio.currentTime);
+        currentTimer = setTimeout(stopAudio, PREVIEW_DURATION * 1000);
+      }).catch(err => {
+        console.error('Audio konnte nicht abgespielt werden:', err, src);
+        currentAudio = null;
+        currentItem = null;
+      });
+    });
+  });
 })();

@@ -1,15 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" role="img" aria-label="ROKPAK">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" role="img" aria-label="ROKPAK">
   <title>ROKPAK</title>
-  <g fill="none" stroke="currentColor" stroke-width="4">
-    <rect x="12" y="12" width="576" height="236" />
-  </g>
-  <g fill="currentColor">
-    <text x="300" y="175"
-          text-anchor="middle"
-          font-family="'Anton', 'Bebas Neue', 'Arial Narrow', 'Impact', sans-serif"
-          font-weight="400"
-          font-size="180"
-          letter-spacing="6">ROKPAK</text>
-    <path d="M348 95 L338 138 L352 138 L342 182 L372 128 L356 128 L366 95 Z" opacity="0.9"/>
-  </g>
+  <rect x="18" y="18" width="644" height="264" fill="none" stroke="currentColor" stroke-width="4"/>
+  <text x="340" y="222"
+        text-anchor="middle"
+        font-family="'Anton','Bebas Neue','Arial Narrow',Impact,sans-serif"
+        font-weight="400"
+        font-size="230"
+        fill="currentColor"
+        letter-spacing="4">ROKPAK</text>
 </svg>

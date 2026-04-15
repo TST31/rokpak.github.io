@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m http.server 8766)",
+      "Bash(curl -s -o /dev/null -w \"index: %{http_code}\\\\n\" http://localhost:8766/)",
+      "Bash(curl -s -o /dev/null -w \"impressum: %{http_code}\\\\n\" http://localhost:8766/impressum.html)",
+      "Bash(curl -s -o /dev/null -w \"logo.svg: %{http_code}\\\\n\" http://localhost:8766/assets/logo.svg)",
+      "Bash(curl -s http://localhost:8766/)",
+      "Bash(ls -la d:/Coding/rokpak_website/rokpak_draft/images/proberaum*)"
+    ]
+  }
+}
